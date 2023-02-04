@@ -4,7 +4,6 @@ const express= require('express');
 
 // 2. 实例化
 const app =express();
-
 // 3. 创建路由规则
 app.get("/server",(request,response) =>{
     // 允许跨域
