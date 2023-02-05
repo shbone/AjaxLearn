@@ -6,3 +6,4 @@
 - 2-post-express.js Ajax发送
 ### 后端
 - express.js express框架后端
+- 2-express.js 添加针对post请求的修改
