@@ -16,6 +16,7 @@
 <body>
     <button> 点击发送</button>
     <div id="result"></div>
+    <div id="text"></div>
     
 </body>
 <script>
@@ -26,28 +27,33 @@
         console.log('test');
         // 2.1创建请求
         const xhr = new XMLHttpRequest();
+        const result = document.getElementById("result");
         // 2.2构建请求
-        xhr.open('GET','http://127.0.0.1:8000/server');
+        xhr.open('GET','http://127.0.0.1:8000/server?x=1&y=2&z=3');
         // 2.3发送请求
         xhr.send();
         // 2.4绑定事件，处理返回结果
         // readystate xhr属性
         xhr.onreadystatechange = function(){
             // 响应码
-            if(xhr.readyState===4){
+            if(xhr.readyState === 4){
                 
                 if( xhr.status >=200 && xhr.status<300){
                     
-                    console.log('response ok!');
-                    console.log(xhr.status);        //状态码
-                    console.log(xhr.statusText);    //状态字符串
-                    console.log(xhr.getAllResponseHeaders()); //响应头
+                    // console.log('response ok!');
+                    // console.log('status',xhr.status);        //状态码
+                    // console.log(xhr.statusText);    //状态字符串
+                    // console.log(xhr.getAllResponseHeaders()); //响应头
+                    // console.log(xhr.response);      //相应体
+                    result.innerText = xhr.response;
+                    
                 }else{
-                    console.log('xhr.status error!')
+                    console.log('xhr.status error!');
                 }
 
             }else{
-                console.log('xhr.readyState error!')
+                // 前面readystate === 0/1/2/3 没有
+                // console.log('xhr.readyState error!');
             }
         }
 
