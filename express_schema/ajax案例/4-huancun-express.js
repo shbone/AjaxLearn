@@ -9,7 +9,7 @@ app.get("/server",(request,response) =>{
     // 允许跨域
     response.setHeader('Access-Control-Allow-Origin','*')
     //设置相应
-    response.send('Ajax Test edit');
+    response.send('Ajax Test');
     
     
 });
@@ -22,6 +22,37 @@ app.post("/server",(request,response) =>{
     
     
 });
+
+// 满足任何类型
+app.all("/server-post",(request,response) =>{
+    // 允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*')
+
+    // 自定义json
+    let data ={
+        "name":"shb_test"
+    }
+    // 进行字符串转换
+    let str = JSON.stringify(data);
+    //设置相应
+    response.send(str);
+    
+    
+});
+
+
+// 满足任何类型
+app.all("/server-IE",(request,response) =>{
+    // 允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*')
+
+
+    //设置相应
+    response.send("Ajax IE");
+    
+    
+});
+
 
 // 4. 监听端口服务
 app.listen(8000,()=>{

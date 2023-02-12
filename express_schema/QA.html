@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Chat Box</title>
+  </head>
+  <body>
+    <h1>Chat Box</h1>
+    <div id="output"></div>
+    <input type="text" id="input">
+    <button onclick="sendMessage()">Send</button>
+    <script>
+      function sendMessage() {
+        var input = document.getElementById("input").value;
+        document.getElementById("output").innerHTML += input + "<br>";
+        document.getElementById("input").value = "";
+      }
+    </script>
+  </body>
+</html>
