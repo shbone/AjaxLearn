@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewpoint" />
+    <title>AJAX GET请求</title>
+    <!-- <link crossorigin="anonymous" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap-grid.css" rel="stylesheet"> -->
+    <!-- 按钮样式 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 2px rgb(230, 156, 246);
+        }
+    </style>
+</head>
+ 
+<body>
+    <h2 class="page-header"> 向ajax发送请求</h2>
+    <button class="btn btn-primary"> GET</button>
+    <button class="btn btn-danger"> POST</button>
+    <button class="btn btn-info">通用方法</button>
+
+
+    
+</body>
+<script>
+    // const btn =document.querySelectorAll('button');
+    // btn[0].onclick =function(){
+
+    // }
+    $('button').eq(0).click(
+        function(){
+        $.get('http://127.0.0.1:8000/jquery-server',{a:100},function(data){
+            console.log(data);
+        },'json');
+    })
+
+    $('button').eq(1).click(
+        function(){
+        $.post('http://127.0.0.1:8000/jquery-server',{a:100},function(data){
+            console.log(data);
+        });
+    })
+
+
+    $('button').eq(2).click(
+        function(){
+            $.ajax({
+                // url
+                url:'http://127.0.0.1:8000/jquery-server',
+                //参数
+                data:{a:100,b:200},
+                //请求
+                // type:
+                success:function(data){
+                    console.log(data);
+                }
+            })
+        }
+        
+    )
+</script>
+</html>
