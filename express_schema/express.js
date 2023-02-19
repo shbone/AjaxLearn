@@ -41,6 +41,10 @@ app.all("/jquery-server",(request,response) =>{
 app.all("/axios-server",(request,response) =>{
     // 允许跨域
     response.setHeader('Access-Control-Allow-Origin','*')
+    // 判断来源来自ajax还是传统请求
+    response.header("Access-Control-Allow-Headers", "*");
+
+    
     //设置相应
     // response.send('Ajax dalay');
     const data = JSON.stringify({data:'Axios send'});

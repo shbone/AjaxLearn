@@ -24,8 +24,12 @@
     <button class="btn btn-primary"> GET</button>
     <button class="btn btn-danger"> POST</button>
     <button class="btn btn-info">通用方法</button>
-
-
+    <button class="btn " >清空输出</button>
+    <div id="output">
+        <textarea id="textoutput" placeholder="输出答案"></textarea>
+    </div>
+    
+    
     
 </body>
 <script>
@@ -37,6 +41,7 @@
     //         })
     //     }
     // )
+    let result = document.getElementById('textoutput');
     axios.defaults.baseURL ='http://127.0.0.1:8000';
     btn[0].onclick = function(){
         axios({
@@ -51,48 +56,45 @@
             },
             data:{
                 'username':'shb',
-                'passwd':'rooot'
+                'passwd':'root'
             }
             
         }).then(response=>{
             console.log(response);
-            console.log(response.data)
+            console.log(response.data);
+            result.innerText=JSON.stringify(response.data);
+
         })
     }
-    // $('button').eq(0).click(
-    //     function(){
-    //     $.get('http://127.0.0.1:8000/jquery-server',{a:100},function(data){
-    //         console.log(data);
-    //     },'json');
-    // })
-
-    // $('button').eq(1).click(
-    //     function(){
-    //     $.post('http://127.0.0.1:8000/jquery-server',{a:100},function(data){
-    //         console.log(data);
-    //     });
-    // })
     
 
+    btn[3].onclick = function(){
+        document.getElementById("textoutput").value="";
+    }
+    
     $('button').eq(2).click(
         function(){
-            $.ajax({
-                // url
-                url:'http://127.0.0.1:8000/jquery-server',
-                //参数
-                data:{a:100,b:200},
-                //请求
-                // type:
-                data:{
-                    'usrname':'shb',
-                    'passwd':'root'
-                },
-                success:function(data){
-                    console.log(data);
-                    //响应状态字符串
-                    
-                }
-            })
+            axios({
+            //url
+            url:'/axios-server',
+            //method
+            method:'POST',
+            //params
+            params:{
+                a:100,
+                b:300
+            },
+            headers:{
+                vip:10,
+                level:100
+            },
+            data:{
+                user:"shb",
+                passwd:"root"
+            }
+        }).then(response =>{
+            console.log(response);
+        })
         }
         
     )
